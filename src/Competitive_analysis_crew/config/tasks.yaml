@@ -1,0 +1,120 @@
+task_collect_info:
+  description: >
+    Collect essential information for competitive analysis:
+    1. Ask the user for their company name and basic details
+    2. Ask for a list of main competitors to analyze
+    3. Gather any specific focus areas or preferences for the analysis
+    4. Confirm all information is accurate before proceeding
+  expected_output: >
+    A structured summary containing:
+    - Client company name and basic details
+    - List of competitor companies to analyze
+    - Any specific focus areas or analysis preferences
+    - Confirmation that all information is accurate
+  agent: onboarding_specialist
+  human_input: true
+
+task_research:
+  description: >
+    Conduct comprehensive competitive research:
+    1. FIRST: Use the DateContextTool to get current date context for accurate temporal analysis
+    2. Research the client company: recent news, financial performance, market position
+    3. Research each competitor: business model, strengths, weaknesses, recent developments
+    4. Analyze market trends and competitive landscape
+    5. Gather quantitative and qualitative data from multiple reliable sources
+    6. Synthesize findings into a comprehensive research dossier
+    
+    IMPORTANT: Always use the DateContextTool at the beginning to understand what 'current', 
+    'recent', and 'latest' mean in terms of actual dates. When discussing financial data, 
+    always specify the actual year (e.g., '2025 financial performance') rather than 
+    relative terms like 'last year' or 'recent year'.
+  expected_output: >
+    A detailed research dossier containing:
+    - Client company profile with recent developments and market position
+    - Comprehensive competitor profiles with strengths, weaknesses, and strategies
+    - Market landscape analysis and trends
+    - Key insights and competitive dynamics
+    - All sources properly cited and verified
+    - All financial data and temporal references using specific years and dates
+  agent: research_analyst
+  context:
+    - task_collect_info
+
+task_write_report:
+  description: >
+    Create a professional competitive analysis report:
+    1. Structure the report with clear sections: Executive Summary, Company Profiles, 
+    Competitive Analysis, Market Insights, and Recommendations
+    2. Use the research dossier to create comprehensive company profiles
+    3. Develop a comparative analysis highlighting key differentiators
+    4. Include actionable recommendations based on the analysis
+    5. Ensure the report is professional, well-formatted, and executive-ready
+  expected_output: >
+    A comprehensive competitive analysis report in markdown format with:
+    - Executive Summary (2-3 paragraphs)
+    - Detailed company profiles for client and competitors
+    - Comparative analysis with SWOT-style insights
+    - Market positioning and competitive dynamics
+    - Strategic recommendations and next steps
+    - Professional formatting suitable for executive presentation
+  agent: report_writer
+  context:
+    - task_research
+
+task_validate_quality:
+  description: >
+    Validate report quality and manage the writing process:
+    1. Review the report for completeness, accuracy, and professional standards
+    2. Check that all required sections are present and well-developed
+    3. Validate that recommendations are actionable and well-supported
+    4. Ensure proper formatting and executive-level presentation
+    5. If quality standards are not met, coordinate with the writer for improvements
+  expected_output: >
+    Quality validation report containing:
+    - Assessment of report completeness and accuracy
+    - Validation of professional standards and formatting
+    - Confirmation that all requirements are met
+    - Any recommendations for improvements (if needed)
+    - Final approval for the report to proceed to editing
+  agent: quality_manager
+  context:
+    - task_write_report
+
+task_edit_report:
+  description: >
+    Perform final editorial review and polishing:
+    1. Review the report for grammar, style, and clarity
+    2. Enhance language for executive-level presentation
+    3. Ensure consistent tone and professional flow
+    4. Optimize readability and impact
+    5. Maintain all factual content while improving presentation
+  expected_output: >
+    A polished, executive-ready competitive analysis report with:
+    - Impeccable grammar and professional language
+    - Enhanced clarity and readability
+    - Consistent executive-level tone throughout
+    - Optimized structure and flow
+    - Professional formatting and presentation
+  agent: senior_editor
+  context:
+    - task_validate_quality
+
+task_translate:
+  description: >
+    Provide optional translation services:
+    1. Ask the user if they need the report translated to another language
+    2. If translation is requested, ask for the target language
+    3. Translate the report while maintaining professional tone and accuracy
+    4. Ensure business terminology is correctly translated
+    5. Provide both original and translated versions
+    6. IMPORTANT: Always display the full report content in your final answer
+  expected_output: >
+    Translation service result with FULL REPORT CONTENT:
+    - Complete original report text
+    - If translation requested: complete translated report text
+    - Both versions must be fully displayed in the final answer
+    - Maintained professional tone and business terminology
+  agent: translator
+  context:
+    - task_edit_report
+  human_input: true

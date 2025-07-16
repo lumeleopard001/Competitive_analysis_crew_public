@@ -1,0 +1,38 @@
+[project]
+name = "competitive-analysis-crew"
+version = "1.0.0"
+description = "Enterprise-grade competitive analysis crew using CrewAI for automated market intelligence and reporting"
+authors = [{ name = "CrewAI Marketplace", email = "marketplace@crewai.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.108.0,<1.0.0",
+    "langchain-community>=0.3.1,<0.4.0",
+    "pydantic>=2.4.2,<3.0.0",
+    "python-dotenv>=1.0.0",
+    "structlog>=24.1.0",
+    "typer>=0.12.0",
+    "rich>=13.7.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=24.0.0",
+    "flake8>=7.0.0",
+    "mypy>=1.8.0"
+]
+
+[project.scripts]
+competitive-analysis-crew = "competitive_analysis_crew.main:run"
+run_crew = "competitive_analysis_crew.main:run"
+train = "competitive_analysis_crew.main:train"
+replay = "competitive_analysis_crew.main:replay"
+test = "competitive_analysis_crew.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
