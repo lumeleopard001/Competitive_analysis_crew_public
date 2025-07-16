@@ -570,4 +570,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Created with CrewAI, caffeine, and care | Open Source**
+**Powered by CrewAI and a lot of espresso | Open Source**
