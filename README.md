@@ -21,14 +21,12 @@ This crew transforms the traditionally time-consuming process of competitive ana
 
 **Traditional competitive analysis is expensive, time-consuming, and inconsistent:**
 
-- Market research firms charge $10,000-50,000+ for comprehensive competitive analysis
 - Internal teams spend weeks gathering and synthesizing competitive intelligence
 - Results vary significantly based on researcher expertise and available time
 - Reports often lack consistency in format and depth of analysis
 
 **Our solution provides:**
 
-- **Cost Reduction**: 90%+ cost savings compared to traditional consulting
 - **Time Efficiency**: Complete analysis in hours instead of weeks
 - **Consistency**: Standardized, professional reports every time
 - **Scalability**: Analyze multiple competitors simultaneously
